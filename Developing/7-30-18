@@ -1,1 +1,5 @@
 Currently looking for encryption method that would work well and consitantly without needing the user to do anything more than plug in and press a button
+
+Before encrypting we need to unmount the drive, using the UMOUNT command.
+
+The user will only need to title their drive such as "MAIN" (Shall be decided soon)
