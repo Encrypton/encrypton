@@ -1,0 +1,9 @@
+Issues that were resolved:
+
+-Finding the software that we will use for encryption
+
+-How to securly encrypt files that when decrypted can be accessed on any system.
+
+-An ideal solution to this would be to use a small windows computer, since it can enable and disable bitlocker. But it is very expensive
+
+- We are using CryptSetup to encrypt the drives 
