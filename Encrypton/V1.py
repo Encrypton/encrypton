@@ -25,6 +25,8 @@ lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_c
 lcd.message("Welcome to\nENCRYPTON!")
 
 
+
+
 def encrypt():
 	lcd.clear()
 	lcd.message("Please insert \nyour drive")
@@ -90,6 +92,7 @@ def decrypt():
 			lcd.clear()
 			lcd.message("Done!")
 			time.sleep(2.0)
+			lcd.clear()
 			print("Your drive has been decrypted")
 			lcd.message("Your drive has \nbeen decrypted")
 			time.sleep(5.0)
@@ -129,6 +132,7 @@ def clone():
 			lcd.clear()
 			lcd.message("Done!")
 			time.sleep(2.0)
+			lcd.clear()
 			print("Your drive has been cloned")
 			lcd.message("Your drive has \nbeen cloned")
 			time.sleep(5.0)
