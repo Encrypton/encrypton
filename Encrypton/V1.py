@@ -73,7 +73,7 @@ def decrypt():
 	if True:  # TEMP
 		if True:  # DETECT DRIVE MOUNTED:
 			lcd.clear()
-			lcd.message("press DECRYPT \nagain to confirm")
+			lcd.message("Press DECRYPT \nagain to confirm")
 			while True:
 				if not GPIO.input(19):
 					break
@@ -113,9 +113,9 @@ def clone():
 	if True:  # TEMP
 		if True:  # DETECT DRIVE MOUNTED:
 			lcd.clear()
-			lcd.message("press DECRYPT \nagain to confirm")
+			lcd.message("Press CLONE \nagain to confirm")
 			while True:
-				if not GPIO.input(19):
+				if not GPIO.input(12):
 					break
 			lcd.clear()
 			lcd.message("Cloning")
