@@ -65,30 +65,30 @@ encFiles = allfiles()
 if choice == "E":
         for Tfiles in encFiles:
                 if os.path.basename(Tfiles).startswith("(encrypted)"):
-                        print "%s is already encrypted" %str(Tfiles)
+                        print("%s is already encrypted" %str(Tfiles))
                         pass
  
                 elif Tfiles == os.path.join(os.getcwd(), sys.argv[0]):
                         pass
                 else:
                         encrypt(SHA256.new(password).digest(), str(Tfiles))
-                        print "Done encrypting %s" %str(Tfiles)
+                        print("Done encrypting %s" %str(Tfiles))
                         os.remove(Tfiles)
  
  
 elif choice == "D":
         filename = raw_input("Enter the filename to decrypt: ")
         if not os.path.exists(filename):
-                print "The file does not exist"
+                print("The file does not exist")
                 sys.exit(0)
         elif not filename.startswith("(encrypted)"):
-                print "%s is already not encrypted" %filename
+                print("%s is already not encrypted" %filename)
                 sys.exit()
         else:
                 decrypt(SHA256.new(password).digest(), filename)
-                print "Done decrypting %s" %filename
+                print("Done decrypting %s" %filename)
                 os.remove(filename)
  
 else:
-        print "Please choose a valid command."
+        print("Please choose a valid command.")
         sys.exit()
