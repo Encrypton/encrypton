@@ -21,21 +21,26 @@ GPIO.setup(12,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 lcd_columns = 16
 lcd_rows = 2
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
-
 # VARIABLES
-
 lcd.message("Welcome to\nENCRYPTON!")
 
 
 def Encrypt():
 	lcd.clear()
 	lcd.message("Please insert \nyour drive")
-		while true:
-			if os.path.ismount(
+	print("Please insert your drive")
+	time.sleep(5.0)	
+	lcd.clear()
+	#while True:
+		#FIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIXFIX
+		#if os.path.ismount(
+	print("Your drive has been encrypted")
 	lcd.message("Your drive has \nbeen encrypted!")
-
+	time.sleep(5.0)
+	lcd.clear()
 def Decrypt():
 	lcd.clear()
+	lcd.messege("Please insert\nyour drive")
 	lcd.message("Your drive has \nbeen decrypted!")
 def Clone():
 	lcd.clear()
@@ -43,6 +48,7 @@ def Clone():
 def main():
 	RSNor = True
 	while RSNor == True:
+		lcd.message("Welcome to Encrypton")
 		encryptButt = GPIO.input(16)
 		decryptButt = GPIO.input(19)
 		cloneButt = GPIO.input(12)
