@@ -25,15 +25,15 @@ lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_c
 lcd.message("Welcome to\nENCRYPTON!")
 
 
-def Encrypt():
+def encrypt():
 	lcd.clear()
 	lcd.message("Please insert \nyour drive")
 	print("Please insert your drive")
-	time.sleep(5.0)	
+	time.sleep(5.0)	                                           #TEMP
 	#lcd.clear()
-	#while True:                         #FIX
-	if True:                             #TEMP
-		if True:                     #DETECT DRIVE MOUNTED:
+	#while True:                                               #FIX
+	if True:                                                   #TEMP
+		if True:                                               #DETECT DRIVE MOUNTED:
 			lcd.clear()
 			lcd.message("Press ENCRYPT \nagain to confirm")
 			while True:
@@ -52,8 +52,8 @@ def Encrypt():
 			lcd.message("Encrypting...")
 			time.sleep(1.0)
 			lcd.clear()
-			lcd.message("Done")
-			time.sleep(1.5)
+			lcd.message("Done!")
+			time.sleep(2.0)
 			lcd.clear()
 			print("Your drive has been encrypted")
 			lcd.message("Your drive has \nbeen encrypted!")
@@ -61,19 +61,82 @@ def Encrypt():
 			main()
 
 
-def Decrypt():
+def decrypt():
 	lcd.clear()
 	lcd.message("Please insert\nyour drive")
 	print("Please insert your drive")
-	time.sleep(5.0)
-	lcd.clear()
-	lcd.message("Your drive has \nbeen decrypted!")
-	time.sleep(5.0)
+	time.sleep(5.0)                                             #TEMP
+	# lcd.clear()
+	# while True:                                               #FIX
+	if True:  # TEMP
+		if True:  # DETECT DRIVE MOUNTED:
+			lcd.clear()
+			lcd.message("press DECRYPT \nagain to confirm")
+			while True:
+				if not GPIO.input(19):
+					break
+			lcd.clear()
+			lcd.message("Decrypting")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Decrypting.")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Decrypting..")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Decrypting...")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Done!")
+			time.sleep(2.0)
+			print("Your drive has been decrypted")
+			lcd.message("Your drive has \nbeen decrypted")
+			time.sleep(5.0)
+			main()
+			lcd.clear()
+			lcd.message("Your drive has \nbeen decrypted!")
+			time.sleep(5.0)
+			main()
 
 
-def Clone():
+def clone():
 	lcd.clear()
-	lcd.message("Your drive has\nbeen cloned!")
+	lcd.message("Please insert\nyour drive")
+	print("Please insert your drive")
+	time.sleep(5.0)  # TEMP
+	# lcd.clear()
+	# while True:                                               #FIX
+	if True:  # TEMP
+		if True:  # DETECT DRIVE MOUNTED:
+			lcd.clear()
+			lcd.message("press DECRYPT \nagain to confirm")
+			while True:
+				if not GPIO.input(19):
+					break
+			lcd.clear()
+			lcd.message("Cloning")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Cloning.")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Cloning..")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Cloning...")
+			time.sleep(1.0)
+			lcd.clear()
+			lcd.message("Done!")
+			time.sleep(2.0)
+			print("Your drive has been cloned")
+			lcd.message("Your drive has \nbeen cloned")
+			time.sleep(5.0)
+			main()
+			lcd.clear()
+			lcd.message("Your drive has \nbeen cloned!")
+			time.sleep(5.0)
+			main()
 
 
 def main():
@@ -89,17 +152,17 @@ def main():
 			#print("pretest1")
 			RSNor=False
 			#print("Test1")
-			Encrypt()
+			encrypt()
 		if decryptButt == False:
 			#print("pretest2")
 			RSNor=False
 			#print("test2")
-			Decrypt()
+			decrypt()
 		if cloneButt == False:
 			#print("pretest3")
 			RSNor=False
 			#print("test3")
-			Clone()
+			clone()
 
 
 	#GPIO.add_event_detect(
