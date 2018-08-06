@@ -70,6 +70,7 @@ def encrypt():
 			time.sleep(2.0)
 			lcd.clear()
 			print("Your drive has been encrypted")
+			#while True:
 			lcd.message("Your drive has \nbeen encrypted!")
 			time.sleep(5.0)
 			main()
