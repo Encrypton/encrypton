@@ -1,7 +1,8 @@
 from Crypto.Hash import SHA256
 from Crypto.Cipher import AES
-import os, random, sys, pkg_resources
- 
+import os, random, sys, pkg_resources, cmd
+
+
 def encrypt(key, filename):
         chunksize = 64 * 1024
         outFile = os.path.join(os.path.dirname(filename), "(encrypted)"+os.path.basename(filename))
@@ -47,7 +48,8 @@ def decrypt(key, filename):
                                 outfile.write(decryptor.decrypt(chunk))
  
                         outfile.truncate(int(filesize))
-       
+
+
 def allfiles():
         allFiles = []
         for root, subfiles, files in os.walk(os.getcwd()):
@@ -55,8 +57,9 @@ def allfiles():
                         allFiles.append(os.path.join(root, names))
  
         return allFiles
- 
-#MAIN       
+
+#MAIN
+
 choice = raw_input("Do you want to (E)ncrypt or (D)ecrypt? ")
 password = raw_input("Enter the password: ")
  
