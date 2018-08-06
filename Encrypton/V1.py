@@ -47,10 +47,8 @@ def encryptfile(key, filename):
 
 				if len(chunk) == 0:
 					break
-
 				elif len(chunk) % 16 != 0:
 					chunk += ' ' * (16 - (len(chunk) % 16))
-
 				outfile.write(encryptor.encrypt(chunk))
 
 
@@ -82,9 +80,6 @@ def allfiles():
 	return allFiles
 
 
-
-
-
 def encrypt():
 	flashdir = shutil.make_archive(output_filename, 'zip', dir_name)                           #Dir for drive needed here
 	lcd.clear()
@@ -100,33 +95,20 @@ def encrypt():
 			while True:
 				if GPIO.input(16) == False:
 					break
-			encryptfile((raw_input, flashdir))
+			#encryptfile((raw_input, flashdir))
 			lcd.clear()
-			lcd.message("Encrypting")
-			time.sleep(.5)
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting.")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting..")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting...")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting.")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting..")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Encrypting...")
-			time.sleep(0.5)
-			lcd.clear()
+			string = "Encrypting"
+			periodcount = 0,
+			periodover = 0
+			while periodcount <= 5 and periodover <= 1:
+				lcd.message(string + "." * x)
+				if x >= 3:
+					x = 0
+					periodover = + 1
+				x += 1
+				time.sleep(.5)
+				lcd.clear()
+
 			lcd.message("Done!")
 			time.sleep(2.0)
 			lcd.clear()
@@ -152,27 +134,17 @@ def decrypt():
 				if not GPIO.input(19):
 					break
 			lcd.clear()
-			lcd.message("Decrypting")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Decrypting.")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Decrypting..")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Decrypting...")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Decrypting.")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Decrypting..")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Decrypting...")
-			time.sleep(0.5)
-			lcd.clear()
+			string = "Decrypting"
+			periodcount = 0,
+			periodover = 0
+			while periodcount <= 5 and periodover <= 1:
+				lcd.message(string + "." * x)
+				if x >= 3:
+					x = 0
+					periodover = + 1
+				x += 1
+				time.sleep(.5)
+				lcd.clear()
 			lcd.message("Done!")
 			time.sleep(2.0)
 			lcd.clear()
@@ -201,27 +173,17 @@ def clone():
 				if not GPIO.input(12):
 					break
 			lcd.clear()
-			lcd.message("Cloning")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Cloning.")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Cloning..")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Cloning...")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Cloning.")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Cloning..")
-			time.sleep(0.5)
-			lcd.clear()
-			lcd.message("Cloning...")
-			time.sleep(0.5)
-			lcd.clear()
+			string = "Cloning"
+			periodcount = 0,
+			periodover = 0
+			while periodcount <= 5 and periodover <= 1:
+				lcd.message(string + "." * x)
+				if x >= 3:
+					x = 0
+					periodover = + 1
+				x += 1
+				time.sleep(.5)
+				lcd.clear()
 			lcd.message("Done!")
 			time.sleep(2.0)
 			lcd.clear()
