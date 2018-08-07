@@ -61,6 +61,7 @@ def encrypt():
 	lcd.clear()
 	lcd.message("##Encrypting")
 	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
+    os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/MAIN/")
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
@@ -95,6 +96,13 @@ def decrypt():
 	while True:
 		if not GPIO.input(19): break
 
+
+    lcd.message("Please scan \n ID Card")
+    rfid = raw_input()
+    lcd.clear()
+    lcd.message("##Decrypting")
+    os.system("7z x /media/MAIN/encrypt.7z -p" + rfid)
+    os.system("rm encrypt.7z")
 	while periodcount <= 5 and periodover <= 1:
 		lcd.clear()
 		lcd.message(string + "." * periodcount)
