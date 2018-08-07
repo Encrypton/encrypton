@@ -14,28 +14,91 @@ import RPi.GPIO as GPIO
 import os
 import shutil
 import zipfile
+<<<<<<< HEAD
 import subprocess
 
+=======
+print("[ " + time.asctime() + " ]   Imports Complete")
+>>>>>>> dc56ef51fcc92e40e137a52561b63205fd6803ab
 # Raspberry Pi pin setup
-lcd_rs = 25
-lcd_en = 24
-lcd_d4 = 23
-lcd_d5 = 17
-lcd_d6 = 18
-lcd_d7 = 22
-lcd_backlight = 2
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+lcd_rs = 25 ; print("[ " + time.asctime() + " ]   LCD_RS Pin Setup")
+lcd_en = 24 ; print("[ " + time.asctime() + " ]   LCD_EN Pin Setup")
+lcd_d4 = 23 ; print("[ " + time.asctime() + " ]   LCD_D4 Pin Setup")
+lcd_d5 = 17 ; print("[ " + time.asctime() + " ]   LCD_D5 Pin Setup")
+lcd_d6 = 18 ; print("[ " + time.asctime() + " ]   LCD_D6 Pin Setup")
+lcd_d7 = 22 ; print("[ " + time.asctime() + " ]   LCD_D7 Pin Setup")
+lcd_backlight = 2 ;  print("[ " + time.asctime() + " ]   LCD_BACK Pin Setup")
 lcd_columns = 16      # Define LCD column and row size for 16x2 LCD.
 lcd_rows = 2
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
+<<<<<<< HEAD
+=======
+print("[ " + time.asctime() + " ]   LCD Setup Complete")
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+print("[ " + time.asctime() + " ]   Button Setup Complete")
+
+def encryptfile(key, filename):
+	chunksize = 64 * 1024
+	outFile = os.path.join(os.path.dirname(filename), "(encrypted)" + os.path.basename(filename))
+	filesize = str(os.path.getsize(filename)).zfill(16)
+	IV = ''
+
+	for i in range(16):
+		IV += chr(random.randint(0, 0xFF))
+
+	encryptor = AES.new(key, AES.MODE_CBC, IV)
+
+	with open(filename, "rb") as infile:
+		with open(outFile, "wb") as outfile:
+			outfile.write(filesize)
+			outfile.write(IV)
+			while True:
+				chunk = infile.read(chunksize)
+
+				if len(chunk) == 0:
+					break
+				elif len(chunk) % 16 != 0:
+					chunk += ' ' * (16 - (len(chunk) % 16))
+				outfile.write(encryptor.encrypt(chunk))
+
+
+def decryptfile(key, filename):
+	outFile = os.path.join(os.path.dirname(filename), os.path.basename(filename[11:]))
+	chunksize = 64 * 1024
+	with open(filename, "rb") as infile:
+		filesize = infile.read(16)
+		IV = infile.read(16)
+
+		decryptor = AES.new(key, AES.MODE_CBC, IV)
+
+		with open(outFile, "wb") as outfile:
+			while True:
+				chunk = infile.read(chunksize)
+				if len(chunk) == 0:
+					break
+
+				outfile.write(decryptor.decrypt(chunk))
+
+			outfile.truncate(int(filesize))
+
+
+def allfiles():
+	allFiles = []
+	#for root, subfiles, files in os.walk(os.getcwd()):
+		#for names in files:
+			#allFiles.append(os.path.join(root, names))
+	return allFiles
+>>>>>>> dc56ef51fcc92e40e137a52561b63205fd6803ab
 
 
 def encrypt():
 	# # # # # # # # # # # # # VARS # # # # # # # # # # # # #
-	flashdir = shutil.make_archive(output_filename, 'zip', dir_name)                           # Dir for drive needed here
+	#flashdir = shutil.make_archive(output_filename, 'zip', dir_name)                           # Dir for drive needed here
 	string = "Encrypting"                                                                      # For Visual
 	periodcount = 0 ; periodover = 0
 
@@ -61,6 +124,7 @@ def encrypt():
 		periodcount += 1
 		time.sleep(.5)
 
+	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen encrypted!"); print("Your drive has been encrypted")
@@ -70,7 +134,7 @@ def encrypt():
 
 def decrypt():
 	# # # # # # # # # # VARS # # # # # # # # #
-	flashdir = shutil.make_archive(output_filename, 'zip', dir_name)   # Dir for drive needed here
+	#flashdir = shutil.make_archive(output_filename, 'zip', dir_name)   # Dir for drive needed here
 	string = "Decrypting"                                                                  # For Visual
 	periodcount = 0 ; periodover = 0
 
@@ -88,10 +152,11 @@ def decrypt():
 		lcd.message(string + "." * periodcount)
 		if periodcount >= 3:
 			periodcount = 0
-			periodover = + 1
+			periodover += 1
 		periodcount += 1
 		time.sleep(.5)
-
+	
+	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen decrypted"); print("Your drive has been decrypted")
@@ -101,7 +166,7 @@ def decrypt():
 
 def clone():
 	# VARS
-	flashdir = shutil.make_archive(output_filename, 'zip', dir_name)  # Dir for drive needed here
+	#flashdir = shutil.make_archive(output_filename, 'zip', dir_name)  # Dir for drive needed here
 	string = "Cloning"
 	periodcount = 0,
 	periodover = 0
@@ -134,16 +199,27 @@ def clone():
 
 def main():
 	#VARS
-	encryptButt = GPIO.input(16)
-	decryptButt = GPIO.input(19)
-	cloneButt = GPIO.input(12)
+	#GPIO.input(16)
+	#GPIO.input(19)
+	#GPIO.input(12)
+
 
 	lcd.clear()
-	lcd.message("Welcome to\n ENCRYPTON")
+	lcd.message("Welcome to\nENCRYPTON")
 	while True:
-		if not encryptButt: lcd.clear(); encrypt()
-		if not decryptButt: lcd.clear(); decrypt()
-		if not cloneButt: lcd.clear(); clone()
-
+		encryptButt = GPIO.input(16)
+		decryptButt = GPIO.input(19)
+		cloneButt = GPIO.input(12)
+		if encryptButt == False:
+			lcd.clear()
+			print("[ " + time.asctime() + " ]   ENCRYPT BUTTON")
+			encrypt()
+		if decryptButt == False:
+			lcd.clear()
+			decrypt()
+		if cloneButt == False: 
+			lcd.clear()
+			clone()
 
 main()
+GPIO.cleanup()
