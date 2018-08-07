@@ -62,7 +62,7 @@ def encrypt():
 	lcd.message("Press ENCRYPT \nagain to confirm")                                          # # Confirm
 	while True:
 		if not GPIO.input(16): break
-    lcd.message("Please scan \n ID Card")
+		lcd.message("Please scan \n ID Card")
     rfid = raw.input()
     subprocess.call("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
