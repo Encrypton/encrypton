@@ -54,6 +54,7 @@ def encrypt():
 	lcd.clear()
 	lcd.message("##Encrypting")
 	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
+	os.system("sudo rm -rf /media/pi/MAIN/*")
 	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/pi/MAIN/")
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
