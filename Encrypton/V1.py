@@ -1,5 +1,13 @@
 #!/usr/bin/python
 # Example using a character LCD connected to a Raspberry Pi
+# If this is your first time reading this code, we recommend that you visit our github page at:
+# https://github.com/lennymelnik/encrypton and view our readme at
+# https://github.com/lennymelnik/encrypton/blob/master/README.md
+# Also, sorry about the terrible commenting and organization
+#     Your's Truly
+#     The Encrypton Team
+
+
 import time
 import Adafruit_CharLCD as LCD
 import RPi.GPIO as GPIO
@@ -15,9 +23,9 @@ lcd_d5 = 17
 lcd_d6 = 18
 lcd_d7 = 22
 lcd_backlight = 2
-GPIO.setup(16,GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(19,GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(12,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 lcd_columns = 16      # Define LCD column and row size for 16x2 LCD.
 lcd_rows = 2
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
@@ -80,10 +88,10 @@ def encrypt():
 	flashdir = shutil.make_archive(output_filename, 'zip', dir_name)                           # Dir for drive needed here
 	string = "Encrypting"                                                                      # For Visual
 	periodcount = 0 ; periodover = 0
-	# # # # # # # # # # # # # MAIN # # # # # # # # # # # # #
 
+	# # # # # # # # # # # # # MAIN # # # # # # # # # # # # #
 	lcd.message("Please insert \nyour drive"); print("Please insert your drive")             # # INSERT Drive
-	while True:                                                                                # TEMP
+	while True:                                                                        # TEMP
 		if True: time.sleep(5.0); lcd.clear(); break                                           # DETECT DRIVE MOUNTED:
 
 	lcd.message("Press ENCRYPT \nagain to confirm")                                          # # Confirm
@@ -112,11 +120,11 @@ def decrypt():
 	flashdir = shutil.make_archive(output_filename, 'zip', dir_name)   # Dir for drive needed here
 	string = "Decrypting"                                                                  # For Visual
 	periodcount = 0 ; periodover = 0
-	# # # # # # # # # # MAIN # # # # # # # # #
 
+	# # # # # # # # # # MAIN # # # # # # # # #
 	lcd.message("Please insert\nyour drive"); print("Please insert your drive")
-	while True:                                                                            # TEMP
-		if True: time.sleep(5.0); lcd.clear(); break                                       # DETECT DRIVE MOUNTED
+	while True:                                                                 # TEMP
+		if True: time.sleep(5.0); lcd.clear(); break                                     # # DETECT DRIVE MOUNTED
 
 	lcd.message("Press DECRYPT \nagain to confirm")
 	while True:
