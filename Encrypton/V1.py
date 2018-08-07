@@ -97,11 +97,11 @@ def encrypt():
 	lcd.message("Press ENCRYPT \nagain to confirm")                                          # # Confirm
 	while True:
 		if not GPIO.input(16): break
-	#encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
+	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
 		lcd.clear()
-		lcd.message(string + "." * x)
+		lcd.message(string + "." * periodcount)
 		if periodcount >= 3:
 			periodcount = 0
 			periodover += 1
@@ -132,7 +132,7 @@ def decrypt():
 
 	while periodcount <= 5 and periodover <= 1:
 		lcd.clear()
-		lcd.message(string + "." * x)
+		lcd.message(string + "." * periodcount)
 		if periodcount >= 3:
 			periodcount = 0
 			periodover = + 1
@@ -166,11 +166,11 @@ def clone():
 		if not GPIO.input(12): 	lcd.clear(); break
 
 	while periodcount <= 5 and periodover <= 1:
-		lcd.message(string + "." * x)
-		if x >= 3:
-			x = 0
+		lcd.message(string + "." * periodcount)
+		if periodcount >= 3:
+			periodcount = 0
 			periodover = + 1
-		x += 1
+		periodcount += 1
 		time.sleep(.5); lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
@@ -188,9 +188,9 @@ def main():
 	lcd.clear()
 	lcd.message("Welcome to\n ENCRYPTON")
 	while True:
-		if encryptButt == False: lcd.clear(); encrypt()
-		if decryptButt == False: lcd.clear(); decrypt()
-		if cloneButt == False: lcd.clear(); clone()
+		if not encryptButt: lcd.clear(); encrypt()
+		if not decryptButt: lcd.clear(); decrypt()
+		if not cloneButt: lcd.clear(); clone()
 
 
 main()
