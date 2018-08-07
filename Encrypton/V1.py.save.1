@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # Example using a character LCD connected to a Raspberry Pi
 # If this is your first time reading this code, we recommend that you visit our github page at:
@@ -40,6 +39,14 @@ GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 print("[ " + time.asctime() + " ]   Button Setup Complete")
 
+def allfiles():
+	allFiles = []
+	#for root, subfiles, files in os.walk(os.getcwd()):
+		#for names in files:
+			#allFiles.append(os.path.join(root, names))
+	return allFiles
+
+
 
 def encrypt():
 	# # # # # # # # # # # # # VARS # # # # # # # # # # # # #
@@ -53,15 +60,12 @@ def encrypt():
 		if True: time.sleep(5.0); lcd.clear(); break                                           # DETECT DRIVE MOUNTED:
 
 	lcd.message("Press ENCRYPT \nagain to confirm")                                          # # Confirm
+	
 	while True:
 		if not GPIO.input(16): break
-	lcd.clear()
-	lcd.message("Please scan \n ID Card")
-	rfid = raw_input()
-	lcd.clear()
-	lcd.message("##Encrypting")
-	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
-	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/MAIN/")
+		lcd.message("Please scan \n ID Card")
+	rfid = raw.input()
+	subprocess.call("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
@@ -96,13 +100,6 @@ def decrypt():
 	while True:
 		if not GPIO.input(19): break
 
-
-	lcd.message("Please scan \n ID Card")
-	rfid = raw_input()
-	lcd.clear()
-	lcd.message("##Decrypting")
-	os.system("7z x /media/MAIN/encrypt.7z -p" + rfid)
-	os.system("rm encrypt.7z")
 	while periodcount <= 5 and periodover <= 1:
 		lcd.clear()
 		lcd.message(string + "." * periodcount)
@@ -177,6 +174,5 @@ def main():
 			lcd.clear()
 			clone()
 
-lcd.clear()
 main()
 GPIO.cleanup()
