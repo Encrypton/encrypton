@@ -17,7 +17,6 @@ import zipfile
 
 import subprocess
 
-=======
 print("[ " + time.asctime() + " ]   Imports Complete")
 
 # Raspberry Pi pin setup
