@@ -1,2 +1,2 @@
-# encrypto
-Encrypo is an encrytion box that allows its user/s to encypt/decrypt any storage device based on a unique ID that can take the form of an NFC, RFID, or swipe card
+# ENCRYPTON
+_Encrypton is an encryption box that allows its user/s to encrypt any storage device based on a ID card._
