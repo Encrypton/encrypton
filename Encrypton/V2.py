@@ -93,8 +93,8 @@ def decrypt():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Decrypting")
-	os.system("7z x /media/MAIN/encrypt.7z -p" + rfid)
-	os.system("rm encrypt.7z")
+	os.system("7z x /media/pi/CLONE/encrypt.7z -p" + rfid)
+	os.system("rm /media/pi/CLONE/encrypt.7z")
 	while periodcount <= 5 and periodover <= 1:
 		lcd.clear()
 		lcd.message(string + "." * periodcount)
