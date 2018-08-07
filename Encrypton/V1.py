@@ -60,7 +60,7 @@ def encrypt():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Encrypting")
-	subprocess.call("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
+	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
