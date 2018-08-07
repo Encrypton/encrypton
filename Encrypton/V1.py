@@ -14,12 +14,12 @@ import RPi.GPIO as GPIO
 import os
 import shutil
 import zipfile
-<<<<<<< HEAD
+
 import subprocess
 
 =======
 print("[ " + time.asctime() + " ]   Imports Complete")
->>>>>>> dc56ef51fcc92e40e137a52561b63205fd6803ab
+
 # Raspberry Pi pin setup
 lcd_rs = 25 ; print("[ " + time.asctime() + " ]   LCD_RS Pin Setup")
 lcd_en = 24 ; print("[ " + time.asctime() + " ]   LCD_EN Pin Setup")
@@ -46,7 +46,7 @@ def allfiles():
 		#for names in files:
 			#allFiles.append(os.path.join(root, names))
 	return allFiles
->>>>>>> dc56ef51fcc92e40e137a52561b63205fd6803ab
+
 
 
 def encrypt():
