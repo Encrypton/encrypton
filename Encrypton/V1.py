@@ -58,7 +58,7 @@ def encrypt():
 	lcd.clear()
 	lcd.message("Please scan \n ID Card")
 	rfid = raw_input()
-	lcd,clear()
+	lcd.clear()
 	lcd.message("##Encrypting")
 	subprocess.call("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
