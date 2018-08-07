@@ -63,8 +63,8 @@ def encrypt():
 	while True:
 		if not GPIO.input(16): break
 		lcd.message("Please scan \n ID Card")
-    rfid = raw.input()
-    subprocess.call("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
+	rfid = raw.input()
+	subprocess.call("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/pi/ -p" + rfid)
 	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
