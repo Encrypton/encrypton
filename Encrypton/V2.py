@@ -88,13 +88,13 @@ def decrypt():
 	lcd.message("Press DECRYPT \nagain to confirm")
 	while True:
 		if not GPIO.input(19): break
-
+	lcd.clear()
 	lcd.message("Please scan \n ID Card")
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Decrypting")
-	os.system("7z x /media/pi/CLONE/encrypt.7z -p" + rfid)
-	os.system("rm /media/pi/CLONE/encrypt.7z")
+	os.system("7z x /media/pi/MAIN/encrypt.7z -o /media/pi/MAIN/ -p" + rfid)
+	os.system("rm /media/pi/MAIN/encrypt.7z")
 	while periodcount <= 5 and periodover <= 1:
 		lcd.clear()
 		lcd.message(string + "." * periodcount)
