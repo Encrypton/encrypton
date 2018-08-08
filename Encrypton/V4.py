@@ -15,25 +15,36 @@ import os
 print("[ " + time.asctime() + " ]   Imports Complete")
 
 # Raspberry Pi pin setup
-lcd_rs = 25 ; print("[ " + time.asctime() + " ]   LCD_RS Pin Setup")
-lcd_en = 24 ; print("[ " + time.asctime() + " ]   LCD_EN Pin Setup")
-lcd_d4 = 23 ; print("[ " + time.asctime() + " ]   LCD_D4 Pin Setup")
-lcd_d5 = 17 ; print("[ " + time.asctime() + " ]   LCD_D5 Pin Setup")
-lcd_d6 = 18 ; print("[ " + time.asctime() + " ]   LCD_D6 Pin Setup")
-lcd_d7 = 22 ; print("[ " + time.asctime() + " ]   LCD_D7 Pin Setup")
-lcd_backlight = 2 ;  print("[ " + time.asctime() + " ]   LCD_BACK Pin Setup")
-lcd_columns = 16      # Define LCD column and row size for 16x2 LCD.
-lcd_rows = 2
+lcd_rs = 25 ; print("[ " + time.asctime() + " ]   LCD_RS Pin Set")
+lcd_en = 24 ; print("[ " + time.asctime() + " ]   LCD_EN Pin Set")
+lcd_d4 = 23 ; print("[ " + time.asctime() + " ]   LCD_D4 Pin Set")
+lcd_d5 = 17 ; print("[ " + time.asctime() + " ]   LCD_D5 Pin Set")
+lcd_d6 = 18 ; print("[ " + time.asctime() + " ]   LCD_D6 Pin Set")
+lcd_d7 = 22 ; print("[ " + time.asctime() + " ]   LCD_D7 Pin Set")
+lcd_backlight = 2 ;  print("[ " + time.asctime() + " ]   LCD_BACK Pin Set")
+lcd_columns = 16 ;   print("[ " + time.asctime() + " ]   LCD_COLUMS Set")
+lcd_rows = 2 ;       print("[ " + time.asctime() + " ]   LCD_ROWS Set")
 lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
 print("[ " + time.asctime() + " ]   LCD Setup Complete")
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setmode(GPIO.BCM) ;  print("[ " + time.asctime() + " ]   GPIO_MODE Set BCM")
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
+GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP19, IN, Set GPIO.PUD_UP")
+GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP12, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
 
+fun=0
+while fun <= 50:
+	print("[ " + time.asctime() + " ]   RAND_THING.CooL_LOOKING")
+	fun += 1
+	time.sleep(.05)
+
+fun=0
+while fun <= 10:
+	print("[ " + time.asctime() + " ]   WELCOME TO ENCRYPTON")
+	fun += 1
+	time.sleep(.05)
 
 def encrypt():
 	# # # # # # # # # # # # # VARS # # # # # # # # # # # # #
@@ -64,8 +75,7 @@ def encrypt():
 	os.system("sudo mv /home/pi/Encrypton/encrypt0.7z /media/pi/MAIN/")
 	os.system("sudo mv /home/pi/Encrypton/encrypt1.7z /media/pi/MAIN1/")
 	os.system("sudo mv /home/pi/Encrypton/encrypt2.7z /media/pi/MAIN2/")
-	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
-
+	
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
 		lcd.clear()
 		lcd.message(string + "." * periodcount)
@@ -173,12 +183,6 @@ def clone():
 
 
 def main():
-	#VARS
-	#GPIO.input(16)
-	#GPIO.input(19)
-	#GPIO.input(12)
-
-
 	lcd.clear()
 	lcd.message("Welcome to\nENCRYPTON")
 	while True:
