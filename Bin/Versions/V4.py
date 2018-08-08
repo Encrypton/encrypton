@@ -64,7 +64,6 @@ def encrypt():
 	os.system("sudo mv /home/pi/Encrypton/encrypt0.7z /media/pi/MAIN/")
 	os.system("sudo mv /home/pi/Encrypton/encrypt1.7z /media/pi/MAIN1/")
 	os.system("sudo mv /home/pi/Encrypton/encrypt2.7z /media/pi/MAIN2/")
-	# encryptfile((raw_input, flashdir))                                                      # # ENCRYPTION
 
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
 		lcd.clear()
