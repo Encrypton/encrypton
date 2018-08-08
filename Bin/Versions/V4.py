@@ -165,9 +165,11 @@ def clone():
 	os.system("sudo cp -a /media/pi/MAIN /media/pi/CLONE")
 	os.system("sudo cp -a /media/pi/MAIN /media/pi/CLONE1")
 	os.system("sudo cp -a /media/pi/MAIN /media/pi/CLONE2")
+
 	os.system("sudo cp -a /media/pi/MAIN1 /media/pi/CLONE")
 	os.system("sudo cp -a /media/pi/MAIN1 /media/pi/CLONE1")
 	os.system("sudo cp -a /media/pi/MAIN1 /media/pi/CLONE2")
+    
 	os.system("sudo cp -a /media/pi/MAIN2 /media/pi/CLONE")
 	os.system("sudo cp -a /media/pi/MAIN2 /media/pi/CLONE1")
 	os.system("sudo cp -a /media/pi/MAIN2 /media/pi/CLONE2")
