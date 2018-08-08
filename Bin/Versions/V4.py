@@ -90,6 +90,7 @@ def encrypt():
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen encrypted!"); print("Your drive has been encrypted")
 	time.sleep(2.0)
+	lcd.clear()
 	main()
 
 
@@ -113,13 +114,13 @@ def decrypt():
 	lcd.clear()
 	lcd.message("##Decrypting")
 	os.system("7z x /media/pi/MAIN/encrypt0.7z -o/media/pi/MAIN/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN/encrypt1.7z -o/media/pi/MAIN1/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN/encrypt2.7z -o/media/pi/MAIN2/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN1/encrypt0.7z -o/media/pi/MAIN/ -p" + rfid)
+	os.system("7z x /media/pi/MAIN/encrypt0.7z -o/media/pi/MAIN1/ -p" + rfid)
+	os.system("7z x /media/pi/MAIN/encrypt0.7z -o/media/pi/MAIN2/ -p" + rfid)
+	os.system("7z x /media/pi/MAIN1/encrypt1.7z -o/media/pi/MAIN/ -p" + rfid)
 	os.system("7z x /media/pi/MAIN1/encrypt1.7z -o/media/pi/MAIN1/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN1/encrypt2.7z -o/media/pi/MAIN2/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN2/encrypt0.7z -o/media/pi/MAIN/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN2/encrypt1.7z -o/media/pi/MAIN1/ -p" + rfid)
+	os.system("7z x /media/pi/MAIN1/encrypt1.7z -o/media/pi/MAIN2/ -p" + rfid)
+	os.system("7z x /media/pi/MAIN2/encrypt2.7z -o/media/pi/MAIN/ -p" + rfid)
+	os.system("7z x /media/pi/MAIN2/encrypt2.7z -o/media/pi/MAIN1/ -p" + rfid)
 	os.system("7z x /media/pi/MAIN2/encrypt2.7z -o/media/pi/MAIN2/ -p" + rfid)
 
 	os.system("sudo rm /media/pi/MAIN/encrypt0.7z")
@@ -146,6 +147,7 @@ def decrypt():
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen decrypted"); print("Your drive has been decrypted")
 	time.sleep(2.0)
+	lcd.clear()
 	main()
 
 
@@ -154,15 +156,15 @@ def clone():
 	#flashdir = shutil.make_archive(output_filename, 'zip', dir_name)  # Dir for drive needed here
 	string = "Cloning"
 	periodcount = 0,
-	periodover = 0
-
+	periodover = 0,
+	os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
 	lcd.message("Please insert\ndrive to clone"); print("Please insert drive to clone")
 	while True:
-		if True: time.sleep(3.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
+		if True: time.sleep(4.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
 
 	lcd.message("Please insert\noutput drive"); print("Please insert output drive")
 	while True:
-		if True: time.sleep(3.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
+		if True: time.sleep(4.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
 
 	lcd.message("Press CLONE \nagain to confirm")                    # CONFIRM
 	while True:
@@ -172,17 +174,17 @@ def clone():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Cloning")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE1/")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE2/")
 
-	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE2")
-    
-	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE1/")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE2/")
+	
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE1/")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE2/")
 
 	while periodcount <= 5 and periodover <= 1:
 		lcd.message(string + "." * periodcount)
@@ -191,10 +193,12 @@ def clone():
 			periodover = + 1
 		periodcount += 1
 		time.sleep(.5); lcd.clear()
+	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen cloned"); print("Your drive has been cloned")
 	time.sleep(5.0)
+	os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
 	main()
 
 
