@@ -75,11 +75,7 @@ def encrypt():
 	os.system("sudo mv /home/pi/Encrypton/encrypt0.7z /media/pi/MAIN/")
 	os.system("sudo mv /home/pi/Encrypton/encrypt1.7z /media/pi/MAIN1/")
 	os.system("sudo mv /home/pi/Encrypton/encrypt2.7z /media/pi/MAIN2/")
-<<<<<<< HEAD:Encrypton/V4.py
 	
-=======
-
->>>>>>> d67424914d34b33083944e2dcd4033ff75ee970a:Bin/Versions/V4.py
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
 		lcd.clear()
 		lcd.message(string + "." * periodcount)
@@ -176,17 +172,17 @@ def clone():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Cloning")
-	os.system("sudo cp -a /media/pi/MAIN /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE1")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE2")
 
-	os.system("sudo cp -a /media/pi/MAIN1 /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN1 /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN1 /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE1")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE2")
     
-	os.system("sudo cp -a /media/pi/MAIN2 /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN2 /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN2 /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE1")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE2")
 
 	while periodcount <= 5 and periodover <= 1:
 		lcd.message(string + "." * periodcount)
