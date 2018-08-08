@@ -160,11 +160,11 @@ def clone():
 	os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
 	lcd.message("Please insert\ndrive to clone"); print("Please insert drive to clone")
 	while True:
-		if True: time.sleep(3.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
+		if True: time.sleep(4.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
 
 	lcd.message("Please insert\noutput drive"); print("Please insert output drive")
 	while True:
-		if True: time.sleep(3.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
+		if True: time.sleep(4.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
 
 	lcd.message("Press CLONE \nagain to confirm")                    # CONFIRM
 	while True:
@@ -174,17 +174,17 @@ def clone():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Cloning")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE1/")
+	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE2/")
 
-	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE1/")
+	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE2/")
 	
-	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE")
-	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE1")
-	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE2")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE1/")
+	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE2/")
 
 	while periodcount <= 5 and periodover <= 1:
 		lcd.message(string + "." * periodcount)
@@ -193,6 +193,7 @@ def clone():
 			periodover = + 1
 		periodcount += 1
 		time.sleep(.5); lcd.clear()
+	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen cloned"); print("Your drive has been cloned")
