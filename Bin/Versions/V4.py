@@ -147,8 +147,8 @@ def decrypt():
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen decrypted"); print("Your drive has been decrypted")
 	time.sleep(2.0)
-    lcd.clear()
-    main()
+	lcd.clear()
+	main()
 
 
 def clone():
@@ -157,7 +157,7 @@ def clone():
 	string = "Cloning"
 	periodcount = 0,
 	periodover = 0,
-    os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
+	os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
 	lcd.message("Please insert\ndrive to clone"); print("Please insert drive to clone")
 	while True:
 		if True: time.sleep(3.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
@@ -181,7 +181,7 @@ def clone():
 	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE")
 	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE1")
 	os.system("sudo cp -a /media/pi/MAIN1/* /media/pi/CLONE2")
-    
+	
 	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE")
 	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE1")
 	os.system("sudo cp -a /media/pi/MAIN2/* /media/pi/CLONE2")
@@ -197,8 +197,8 @@ def clone():
 	time.sleep(2.0); lcd.clear()
 	lcd.message("Your drive has \nbeen cloned"); print("Your drive has been cloned")
 	time.sleep(5.0)
-    os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
-    main()
+	os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
+	main()
 
 
 def main():
