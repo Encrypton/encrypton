@@ -8,3 +8,5 @@ sudo python Adafruit_Python_CharLCD/setup.py install
 sudo apt-get install exfat-fuse exfat-utils -y
 sudo apt-get install p7zip-full -y
 sudo mkdir /home/pi/Encrypton
+sudo apt-get install usbmount
+sudo nano /lib/systemd/system/systemd-udevd.service
