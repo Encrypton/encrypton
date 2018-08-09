@@ -1,7 +1,6 @@
-# ENCRYPTON
-Encrypton is an encryption box that allows its user/s to encrypt any storage device based on a wireless ID card._
-
 ![Logo](https://raw.githubusercontent.com/lennymelnik/encrypton/master/Logos/4x/Asset%203%404x.png)
+
+Encrypton is an encryption box that allows its user/s to encrypt any storage device based on a wireless ID card._
 
 
 #What It Can Do:
