@@ -50,7 +50,7 @@ def encrypt():
 	# # # # # # # # # # # # # VARS # # # # # # # # # # # # #
 	string = "Encrypting"                                                                      # For Visual
 	periodcount = 0 ; periodover = 0
-
+	os.system("sudo rm -rf /media/pi/*")
 	# # # # # # # # # # # # # MAIN # # # # # # # # # # # # #
 	lcd.message("Please insert \nyour drive"); print("Please insert your drive")             # # INSERT Drive
 	while True:                                                                        # TEMP
@@ -63,18 +63,25 @@ def encrypt():
 	lcd.message("Please scan \n ID Card")
 	rfid = raw_input()
 	lcd.clear()
+	os.system("sudo rm /home/pi/Encrypton/encrypt0.7z")
+        os.system("sudo rm /home/pi/Encrypton/encrypt1.7z")
+        os.system("sudo rm /home/pi/Encrypton/encrypt2.7z")
+
 	lcd.message("##Encrypting")
-	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt0.7z /media/pi/MAIN/* -p" + rfid)
-	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt1.7z /media/pi/MAIN1/* -p" + rfid)
-	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt2.7z /media/pi/MAIN2/* -p" + rfid)
+	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/usb0/* -p" + rfid)
+	os.system("sudo rm -rf /media/usb0/*")
+	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb0/")
+	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
 
-	os.system("sudo rm -r /media/pi/MAIN/*")
-	os.system("sudo rm -r /media/pi/MAIN1/*")
-	os.system("sudo rm -r /media/pi/MAIN2/*")
+	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/usb1/* -p" + rfid)
+	os.system("sudo rm -rf /media/usb1/*")	
+	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb1/")
+	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
 
-	os.system("sudo mv /home/pi/Encrypton/encrypt0.7z /media/pi/MAIN/")
-	os.system("sudo mv /home/pi/Encrypton/encrypt1.7z /media/pi/MAIN1/")
-	os.system("sudo mv /home/pi/Encrypton/encrypt2.7z /media/pi/MAIN2/")
+	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/usb2/* -p" + rfid)
+	os.system("sudo rm -rf /media/usb2/*")
+	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb2/")
+	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
 	
 	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
 		lcd.clear()
@@ -113,25 +120,13 @@ def decrypt():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Decrypting")
-	os.system("7z x /media/pi/MAIN/encrypt0.7z -o/media/pi/MAIN/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN/encrypt0.7z -o/media/pi/MAIN1/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN/encrypt0.7z -o/media/pi/MAIN2/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN1/encrypt1.7z -o/media/pi/MAIN/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN1/encrypt1.7z -o/media/pi/MAIN1/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN1/encrypt1.7z -o/media/pi/MAIN2/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN2/encrypt2.7z -o/media/pi/MAIN/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN2/encrypt2.7z -o/media/pi/MAIN1/ -p" + rfid)
-	os.system("7z x /media/pi/MAIN2/encrypt2.7z -o/media/pi/MAIN2/ -p" + rfid)
+	os.system("7z x /media/usb2/encrypt.7z -o/media/usb2/* -p" + rfid)
+	os.system("sudo rm /media/usb2/encrypt.7z")
+	os.system("7z x /media/usb0/encrypt.7z -o/media/usb0/* -p" + rfid)
+	os.system("sudo rm /media/usb0/encrypt.7z")
+	os.system("7z x /media/usb1/encrypt.7z -o/media/usb1* -p" + rfid)
+	os.system("sudo rm /media/usb1/encrypt.7z")
 
-	os.system("sudo rm /media/pi/MAIN/encrypt0.7z")
-	os.system("sudo rm /media/pi/MAIN/encrypt1.7z")
-	os.system("sudo rm /media/pi/MAIN/encrypt2.7z")
-	os.system("sudo rm /media/pi/MAIN1/encrypt0.7z")
-	os.system("sudo rm /media/pi/MAIN1/encrypt1.7z")
-	os.system("sudo rm /media/pi/MAIN1/encrypt2.7z")
-	os.system("sudo rm /media/pi/MAIN2/encrypt0.7z")
-	os.system("sudo rm /media/pi/MAIN2/encrypt1.7z")
-	os.system("sudo rm /media/pi/MAIN2/encrypt2.7z")
 
 	while periodcount <= 5 and periodover <= 1:
 		lcd.clear()
@@ -174,7 +169,7 @@ def clone():
 	rfid = raw_input()
 	lcd.clear()
 	lcd.message("##Cloning")
-	os.system("sudo cp -a /media/pi/MAIN/* /media/pi/CLONE/")
+	os.system("sudo cp -a /media/usb0/* /media/usb1/")
 
 
 	while periodcount <= 5 and periodover <= 1:
