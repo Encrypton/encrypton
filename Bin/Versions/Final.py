@@ -30,9 +30,8 @@ print("[ " + time.asctime() + " ]   LCD Setup Complete")
 
 GPIO.setmode(GPIO.BCM) ;  print("[ " + time.asctime() + " ]   GPIO_MODE Set BCM")
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
-# For some reason the clone button does not work
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP21, IN, Set GPIO.PUD_UP")
-GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP20, IN, Set GPIO.PUD_UP")
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP20, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
 fun=0
 while fun <= 25:
@@ -46,6 +45,7 @@ while fun <= 10:
 	fun += 1
 	time.sleep(.05)
 
+
 def encrypt():
 	# # # # # # # # # # # # # VARS # # # # # # # # # # # # #
 	string = "Encrypting"                                                                      # For Visual
@@ -53,11 +53,9 @@ def encrypt():
 	os.system("sudo rm -rf /media/pi/*")
 	# # # # # # # # # # # # # MAIN # # # # # # # # # # # # #
 
-
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/insertdrive.png"); print("Please insert your drive")             # # INSERT Drive
 	while True:                                                                        # TEMP
 		if True: time.sleep(2.0); lcd.clear(); break                                           # DETECT DRIVE MOUNTED:
-
 
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/press_to_confirm.png")   # # Confirm
 	while True:
@@ -85,14 +83,14 @@ def encrypt():
 	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb2/")
 	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
 	
-	while periodcount <= 5 and periodover <= 1:                                              # # Loading...
-		lcd.clear()
-		lcd.message(string + "." * periodcount)
-		if periodcount >= 3:
-			periodcount = 0
-			periodover += 1
-		periodcount += 1
-		time.sleep(.5)
+	#while periodcount <= 5 and periodover <= 1:                                              # # Loading...
+	#	lcd.clear()
+	#	lcd.message(string + "." * periodcount)
+	#	if periodcount >= 3:
+	#		periodcount = 0
+	#		periodover += 1
+	#	periodcount += 1
+	#	time.sleep(.5)
 
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/done.png"); print("Your drive has been encrypted")
 	main()
@@ -105,7 +103,6 @@ def decrypt():
 	periodcount = 0 ; periodover = 0
 
 	# # # # # # # # # # MAIN # # # # # # # # #
-
 
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/insertdrive.png"); print("Please insert your drive")
 	while True:                                                                 # TEMP
@@ -124,7 +121,6 @@ def decrypt():
 	os.system("7z x /media/usb1/encrypt.7z -o/media/usb1* -p" + rfid)
 	os.system("sudo rm /media/usb1/encrypt.7z")
 
-
 	#while periodcount <= 5 and periodover <= 1:
 		#lcd.clear()
 		#lcd.message(string + "." * periodcount)
@@ -133,7 +129,6 @@ def decrypt():
 			#periodover += 1
 		#periodcount += 1
 		#time.sleep(.5)
-	
 	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
@@ -150,13 +145,11 @@ def clone():
 	periodcount = 0,
 	periodover = 0,
 	os.system("sudo umount /media/pi/* | sudo rm -rf /media/pi/*")
-
-
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/cloning/insertdrive.png"); print("Please insert drive to clone")
 	while True:
 		if True: time.sleep(4.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
 
-os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/cloning/insertdrive2.png"); print("Please insert output drive")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/cloning/insertdrive2.png"); print("Please insert output drive")
 	while True:
 		if True: time.sleep(4.0); lcd.clear(); break  # DETECT DRIVE MOUNTED:
 
@@ -188,7 +181,7 @@ def main():
 	while True:
 		encryptButt = GPIO.input(16)
 		decryptButt = GPIO.input(21)
-		cloneButt = GPIO.input(19)
+		cloneButt = GPIO.input(27)
 		if encryptButt == False:
 			lcd.clear()
 			print("[ " + time.asctime() + " ]   ENCRYPT BUTTON")
@@ -199,6 +192,7 @@ def main():
 		if cloneButt == False: 
 			lcd.clear()
 			clone()
+
 
 #lcd.clear()
 main()
