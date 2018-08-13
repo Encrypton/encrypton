@@ -61,8 +61,8 @@ def encrypt():
 
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/press_to_confirm.png")   # # Confirm
 	while True:
-        if not GPIO.input(16):
-            break
+		if not GPIO.input(16):
+			break
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/scan_card.png")
 	rfid = raw_input()
 	os.system("sudo rm /home/pi/Encrypton/encrypt0.7z")
@@ -125,19 +125,19 @@ def decrypt():
 	os.system("sudo rm /media/usb1/encrypt.7z")
 
 
-	while periodcount <= 5 and periodover <= 1:
-		lcd.clear()
-		lcd.message(string + "." * periodcount)
-		if periodcount >= 3:
-			periodcount = 0
-			periodover += 1
-		periodcount += 1
-		time.sleep(.5)
+	#while periodcount <= 5 and periodover <= 1:
+		#lcd.clear()
+		#lcd.message(string + "." * periodcount)
+		#if periodcount >= 3:
+			#periodcount = 0
+			#periodover += 1
+		#periodcount += 1
+		#time.sleep(.5)
 	
 	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
-	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/decrypted.png"); print("Your drive has been decrypted")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/Done.png"); print("Your drive has been decrypted")
 	time.sleep(2.0)
 	lcd.clear()
 	main()
