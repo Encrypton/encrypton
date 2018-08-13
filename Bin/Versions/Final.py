@@ -92,7 +92,7 @@ def encrypt():
 	#	periodcount += 1
 	#	time.sleep(.5)
 
-	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/done.png"); print("Your drive has been encrypted")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/Done.png"); print("Your drive has been encrypted")
 	main()
 
 
@@ -108,7 +108,7 @@ def decrypt():
 	while True:                                                                 # TEMP
 		if True: time.sleep(2.0); lcd.clear(); break                                     # # DETECT DRIVE MOUNTED
 
-	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/press_to confirm.png")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/press_to_confirm.png")
 	while True:
 		if not GPIO.input(21): break
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/scan_card.png")
@@ -161,6 +161,8 @@ def clone():
 	#rfid = raw_input()
 	#lcd.clear()
 	#lcd.message("##Cloning")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/cloning/cloning.png");
+	print("Press CLONE \nagain to confirm")
 	os.system("sudo cp -a /media/usb0/* /media/usb1/")
 
 	while periodcount <= 5 and periodover <= 1:
@@ -177,7 +179,7 @@ def clone():
 
 
 def main():
-	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/Logos/1920x1080/1920x1080\ FINAL.png")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/MAIN.png")
 	while True:
 		encryptButt = GPIO.input(16)
 		decryptButt = GPIO.input(21)
