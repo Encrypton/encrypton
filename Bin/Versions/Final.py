@@ -30,7 +30,7 @@ print("[ " + time.asctime() + " ]   LCD Setup Complete")
 
 GPIO.setmode(GPIO.BCM) ;  print("[ " + time.asctime() + " ]   GPIO_MODE Set BCM")
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
-GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP19, IN, Set GPIO.PUD_UP")
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP19, IN, Set GPIO.PUD_UP")
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP12, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
 
@@ -114,7 +114,7 @@ def decrypt():
 
 	lcd.message("Press DECRYPT \nagain to confirm")
 	while True:
-		if not GPIO.input(19): break
+		if not GPIO.input(21): break
 	lcd.clear()
 	lcd.message("Please scan \n ID Card")
 	rfid = raw_input()
@@ -163,7 +163,7 @@ def clone():
 
 	lcd.message("Press CLONE \nagain to confirm")                    # CONFIRM
 	while True:
-		if not GPIO.input(12): 	lcd.clear(); break
+		if not GPIO.input(26): 	lcd.clear(); break
 	lcd.clear()
 	lcd.message("Please scan \n ID Card")
 	rfid = raw_input()
@@ -192,7 +192,7 @@ def main():
 	while True:
 		encryptButt = GPIO.input(16)
 		decryptButt = GPIO.input(21)
-		cloneButt = GPIO.input(20)
+		cloneButt = GPIO.input(26)
 		if encryptButt == False:
 			lcd.clear()
 			print("[ " + time.asctime() + " ]   ENCRYPT BUTTON")
