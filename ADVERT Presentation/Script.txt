@@ -1,0 +1,7 @@
+Hello,
+
+My name is Leonard Melnik, I am the co-creator of encrypton
+
+Here at encrypton we strive to......
+
+Our product allows for you to encyrpt, decrypt, and clone mulitple drives. This allows for a quick and reliable way to handle hardware exchange as well as store important data.
