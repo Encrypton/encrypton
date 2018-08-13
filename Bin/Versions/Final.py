@@ -188,8 +188,7 @@ def clone():
 
 
 def main():
-	lcd.clear()
-	lcd.message("Welcome to\nENCRYPTON")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/Logos/1920x1080/1920x1080\ FINAL.png")
 	while True:
 		encryptButt = GPIO.input(16)
 		decryptButt = GPIO.input(19)
