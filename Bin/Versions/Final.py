@@ -29,9 +29,9 @@ lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_c
 print("[ " + time.asctime() + " ]   LCD Setup Complete")
 
 GPIO.setmode(GPIO.BCM) ;  print("[ " + time.asctime() + " ]   GPIO_MODE Set BCM")
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
-GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP19, IN, Set GPIO.PUD_UP")
-GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP12, IN, Set GPIO.PUD_UP")
+GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
+GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP19, IN, Set GPIO.PUD_UP")
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP12, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
 
 fun=0
@@ -188,8 +188,7 @@ def clone():
 
 
 def main():
-	lcd.clear()
-	lcd.message("Welcome to\nENCRYPTON")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/Logos/1920x1080/1920x1080\ FINAL.png")
 	while True:
 		encryptButt = GPIO.input(16)
 		decryptButt = GPIO.input(19)
