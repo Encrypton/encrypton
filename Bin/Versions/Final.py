@@ -31,10 +31,9 @@ print("[ " + time.asctime() + " ]   LCD Setup Complete")
 GPIO.setmode(GPIO.BCM) ;  print("[ " + time.asctime() + " ]   GPIO_MODE Set BCM")
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
 # For some reason the clone button does not work
-####GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP19, IN, Set GPIO.PUD_UP")
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP12, IN, Set GPIO.PUD_UP")
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP21, IN, Set GPIO.PUD_UP")
+GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP20, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
-
 fun=0
 while fun <= 50:
 	print("[ " + time.asctime() + " ]   RAND_THING.CooL_LOOKING")
@@ -53,24 +52,24 @@ def encrypt():
 	periodcount = 0 ; periodover = 0
 	os.system("sudo rm -rf /media/pi/*")
 	# # # # # # # # # # # # # MAIN # # # # # # # # # # # # #
-	lcd.message("Please insert \nyour drive"); print("Please insert your drive")             # # INSERT Drive
+
+
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/insertdrive.png"); print("Please insert your drive")             # # INSERT Drive
 	while True:                                                                        # TEMP
 		if True: time.sleep(2.0); lcd.clear(); break                                           # DETECT DRIVE MOUNTED:
 
-	lcd.message("Press ENCRYPT \nagain to confirm")                                          # # Confirm
-	while True:
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/scan_card.png")                                       # # Confirm
+    while True:
 		if not GPIO.input(16): break
-	lcd.clear()
-	lcd.message("Please scan \n ID Card")
-	rfid = raw_input()
-	lcd.clear()
-	os.system("sudo rm /home/pi/Encrypton/encrypt0.7z")
-        os.system("sudo rm /home/pi/Encrypton/encrypt1.7z")
-        os.system("sudo rm /home/pi/Encrypton/encrypt2.7z")
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/press_to_confirm.png")
+    rfid = raw_input()
+    os.system("sudo rm /home/pi/Encrypton/encrypt0.7z")
+    os.system("sudo rm /home/pi/Encrypton/encrypt1.7z")
+    os.system("sudo rm /home/pi/Encrypton/encrypt2.7z")
 
-	lcd.message("##Encrypting")
-	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/usb0/* -p" + rfid)
-	os.system("sudo rm -rf /media/usb0/*")
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/encrypting.png")
+    os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/usb0/* -p" + rfid)
+    os.system("sudo rm -rf /media/usb0/*")
 	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb0/")
 	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
 
@@ -93,13 +92,8 @@ def encrypt():
 		periodcount += 1
 		time.sleep(.5)
 
-	lcd.clear()
-	lcd.message("Done!")
-	time.sleep(2.0); lcd.clear()
-	lcd.message("Your drive has \nbeen encrypted!"); print("Your drive has been encrypted")
-	time.sleep(2.0)
-	lcd.clear()
-	main()
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/done.png"); print("Your drive has been encrypted")
+    main()
 
 
 def decrypt():
@@ -109,18 +103,18 @@ def decrypt():
 	periodcount = 0 ; periodover = 0
 
 	# # # # # # # # # # MAIN # # # # # # # # #
-	lcd.message("Please insert\nyour drive"); print("Please insert your drive")
+
+
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/insert_drive.png"); print("Please insert your drive")
 	while True:                                                                 # TEMP
 		if True: time.sleep(2.0); lcd.clear(); break                                     # # DETECT DRIVE MOUNTED
 
-	lcd.message("Press DECRYPT \nagain to confirm")
-	while True:
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/press_to confirm.png")
+    while True:
 		if not GPIO.input(21): break
-	lcd.clear()
-	lcd.message("Please scan \n ID Card")
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/scan_card.png")
 	rfid = raw_input()
-	lcd.clear()
-	lcd.message("##Decrypting")
+    os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/decrypting.png")
 	os.system("7z x /media/usb2/encrypt.7z -o/media/usb2/* -p" + rfid)
 	os.system("sudo rm /media/usb2/encrypt.7z")
 	os.system("7z x /media/usb0/encrypt.7z -o/media/usb0/* -p" + rfid)
@@ -141,7 +135,7 @@ def decrypt():
 	lcd.clear()
 	lcd.message("Done!")
 	time.sleep(2.0); lcd.clear()
-	lcd.message("Your drive has \nbeen decrypted"); print("Your drive has been decrypted")
+	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/decrypted.png"); print("Your drive has been decrypted")
 	time.sleep(2.0)
 	lcd.clear()
 	main()
