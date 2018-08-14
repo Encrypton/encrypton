@@ -31,7 +31,7 @@ print("[ " + time.asctime() + " ]   LCD Setup Complete")
 GPIO.setmode(GPIO.BCM) ;  print("[ " + time.asctime() + " ]   GPIO_MODE Set BCM")
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP16, IN, Set GPIO.PUD_UP")
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP21, IN, Set GPIO.PUD_UP")
-GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP20, IN, Set GPIO.PUD_UP")
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP27, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
 fun = 26
 while fun <= 25:
@@ -109,20 +109,19 @@ def decrypt():
 
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/insertdrive.png"); print("Please insert your drive")
 	while True:                                                                 # TEMP
-		if True: time.sleep(2.0); lcd.clear(); break                                     # # DETECT DRIVE MOUNTED
-
+		if True: time.sleep(2.0); break                                     # # DETECT DRIVE MOUNTED
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/press_to_confirm.png")
 	while True:
 		if not GPIO.input(21): break
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/scan_card.png")
 	rfid = raw_input()
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/decrypting.png")
-	os.system("7z x /media/usb2/encrypt.7z -o/media/usb2/* -p" + rfid)
-	os.system("sudo rm /media/usb2/encrypt.7z")
-	os.system("7z x /media/usb0/encrypt.7z -o/media/usb0/* -p" + rfid)
+	os.system("7z x /media/usb/encrypt.7z -o/media/usb/* -p" + rfid)
 	os.system("sudo rm /media/usb0/encrypt.7z")
 	os.system("7z x /media/usb1/encrypt.7z -o/media/usb1* -p" + rfid)
 	os.system("sudo rm /media/usb1/encrypt.7z")
+	os.system("7z x /media/usb2/encrypt.7z -o/media/usb2/* -p" + rfid)
+	os.system("sudo rm /media/usb2/encrypt.7z")
 
 	#while periodcount <= 5 and periodover <= 1:
 		#lcd.clear()
@@ -168,12 +167,12 @@ def clone():
 	print("Press CLONE \nagain to confirm")
 	os.system("sudo cp -a /media/usb0/* /media/usb1/")
 
-	while periodcount <= 5 and periodover <= 1:
+	#while False: #periodcount <= 5 and periodover <= 1:
 		#lcd.message(string + "." * periodcount)
-		if periodcount >= 3:
-			periodcount = 0
-			periodover = + 1
-		periodcount += 1
+	#	if periodcount >= 3:
+	#		periodcount = 0
+	#		periodover = + 1
+	#	periodcount += 1
 		#time.sleep(.5); lcd.clear()
 	#lcd.clear()
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/cloning/Done.png"); print("Done!")
