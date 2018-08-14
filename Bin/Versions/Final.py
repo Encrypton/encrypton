@@ -84,7 +84,11 @@ def encrypt():
 	os.system("sudo rm -rf /media/usb2/*")
 	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb2/")
 	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
-	
+	os.system("umount /media/*")
+	os.system("rm -rf /media/usb0/*")
+	os.system("rm -rf /media/usb1/*")
+	os.system("rm -rf /media/usb2/*")
+
 	#while periodcount <= 5 and periodover <= 1:                                              # # Loading...
 	#	lcd.clear()
 	#	lcd.message(string + "." * periodcount)
@@ -116,7 +120,7 @@ def decrypt():
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/scan_card.png")
 	rfid = raw_input()
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/decrypting.png")
-	os.system("7z x /media/usb/encrypt.7z -o/media/usb/* -p" + rfid)
+	os.system("7z x /media/usb0/encrypt.7z -o/media/usb0/* -p" + rfid)
 	os.system("sudo rm /media/usb0/encrypt.7z")
 	os.system("7z x /media/usb1/encrypt.7z -o/media/usb1* -p" + rfid)
 	os.system("sudo rm /media/usb1/encrypt.7z")
@@ -188,7 +192,7 @@ def main():
 		cloneButt = GPIO.input(27)
 		if encryptButt == False:
 			lcd.clear()
-			print("[ " + time.asctime() + " ]   ENCRYPT BUTTON")
+			#print("[ " + time.asctime() + " ]   ENCRYPT BUTTON")
 			encrypt()
 		if decryptButt == False:
 			lcd.clear()
