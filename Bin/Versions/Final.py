@@ -33,13 +33,13 @@ GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime()
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP21, IN, Set GPIO.PUD_UP")
 GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP) ;  print("[ " + time.asctime() + " ]   GP20, IN, Set GPIO.PUD_UP")
 print("[ " + time.asctime() + " ]   Button Setup Complete")
-fun=0
+fun = 26
 while fun <= 25:
 	print("[ " + time.asctime() + " ]   RAND_THING.CooL_LOOKING")
 	fun += 1
 	time.sleep(.05)
 
-fun=0
+#fun=0
 while fun <= 10:
 	print("[ " + time.asctime() + " ]   WELCOME TO ENCRYPTON")
 	fun += 1
