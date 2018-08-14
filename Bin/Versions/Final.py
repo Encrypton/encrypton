@@ -70,6 +70,7 @@ def encrypt():
 	os.system("sudo rm /home/pi/Encrypton/encrypt2.7z")
 
 	os.system("7z -mhc=on -mhe=on a /home/pi/Encrypton/encrypt.7z /media/usb0/* -p" + rfid)
+	time.sleep(.5)
 	os.system("sudo rm -rf /media/usb0/*")
 	os.system("sudo mv /home/pi/Encrypton/encrypt.7z /media/usb0/")
 	os.system("sudo rm /home/pi/Encrypton/encrypt.7z")
