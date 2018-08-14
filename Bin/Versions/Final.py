@@ -93,6 +93,7 @@ def encrypt():
 	#	time.sleep(.5)
 
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/encrypting/Done.png"); print("Your drive has been encrypted")
+	time.sleep(4.5)
 	main()
 
 
@@ -131,9 +132,9 @@ def decrypt():
 		#time.sleep(.5)
 	lcd.clear()
 	lcd.message("Done!")
-	time.sleep(2.0); lcd.clear()
+	time.sleep(0); lcd.clear()
 	os.system("sudo fbi -T 2 -d /dev/fb1 -noverbose -a encrypton/assets/decrypting/Done.png"); print("Your drive has been decrypted")
-	time.sleep(2.0)
+	time.sleep(4.5)
 	lcd.clear()
 	main()
 
