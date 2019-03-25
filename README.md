@@ -1,4 +1,4 @@
-![Logo](https://github.com/Encrypton/encrypton/blob/master/Logos/1920x1080/1920x1080%20FINAL%20Light.png?raw=true)
+![Logo](https://github.com/Encrypton/encrypton/blob/master/Logos/1x/Asset%201.png?raw=true)
 
 Encrypton is an encryption box that allows its user/s to encrypt any storage device based on a wireless ID card._
 
